@@ -26,6 +26,7 @@ public class PlayController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         motor = GetComponent<PlayerMotor>();
         ln = GetComponent<LineRenderer>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

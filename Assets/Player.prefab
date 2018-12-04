@@ -374,9 +374,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4385691065841018}
-  - component: {fileID: 95326491746903032}
-  - component: {fileID: 114047461833415882}
-  - component: {fileID: 114486532720077606}
   m_Layer: 0
   m_Name: 3DBlenderProjectRig
   m_TagString: Untagged
@@ -1291,6 +1288,7 @@ GameObject:
   - component: {fileID: 65334830996882068}
   - component: {fileID: 114107316869765034}
   - component: {fileID: 114554634543609610}
+  - component: {fileID: 95303822155111258}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1827,7 +1825,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901494679411974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4567663535310364}
@@ -3287,13 +3285,13 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95326491746903032
+--- !u!95 &95303822155111258
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1328540957195076}
+  m_GameObject: {fileID: 1901494679411974}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9da3b2e726a0ecb44b1c1ca86994796a, type: 3}
   m_Controller: {fileID: 9100000, guid: baee2d4f78883384a808d6d1966aa013, type: 2}
@@ -3305,25 +3303,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114047461833415882
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1328540957195076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Animator: {fileID: 95326491746903032}
-  m_ParameterSendBits: 0
-  param0: 
-  param1: 
-  param2: 
-  param3: 
-  param4: 
-  param5: 
 --- !u!114 &114084536543688212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3340,7 +3319,6 @@ MonoBehaviour:
   - {fileID: 114107707241541426}
   - {fileID: 20069015628349252}
   - {fileID: 81434984625363536}
-  - {fileID: 0}
   - {fileID: 20873647542054190}
   remoteLayerName: RemotePlayer
   playerUIPrefab: {fileID: 1507675807594286, guid: 7ea9121ff1a710743938564e6a5a5e12,
@@ -3356,7 +3334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd178ca218d41f4fa67e55c8ccdd1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 95326491746903032}
+  animator: {fileID: 95303822155111258}
   groundSpeed: 0
   yVelocity: 0
   grounded: 0
@@ -3391,44 +3369,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 4596192983484508}
   m_ChildIndex: 0
-  m_SendInterval: 0.1
+  m_SendInterval: 0.11111111
   m_SyncRotationAxis: 1
   m_RotationSyncCompression: 0
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.5
   m_InterpolateMovement: 0.5
---- !u!114 &114486532720077606
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1328540957195076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 98
-    i1: 29
-    i2: 230
-    i3: 63
-    i4: 156
-    i5: 64
-    i6: 208
-    i7: 52
-    i8: 122
-    i9: 206
-    i10: 31
-    i11: 86
-    i12: 111
-    i13: 119
-    i14: 105
-    i15: 72
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114498031538429808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3440,7 +3386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb6a499fb8b6e34599604f7f8fb47f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
 --- !u!114 &114554634543609610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3455,7 +3401,7 @@ MonoBehaviour:
   weaponLayerName: Weapon
   layerMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 1024
   weaponHolder: {fileID: 4537600463592914}
   primaryWeapon: {fileID: 11400000, guid: 1394e605541177d45b7755a1c3d86f08, type: 2}
 --- !u!114 &114606710603829064

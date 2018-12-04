@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: P90
   damage: 15
-  range: 90
+  range: 15
   graphics: {fileID: 1036123968019266, guid: 1a7ffda4acaf98b45a6f8340ce3484a3, type: 2}
   fireRate: 10
+  ID: 5

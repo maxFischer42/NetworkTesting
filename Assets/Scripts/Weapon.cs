@@ -11,5 +11,6 @@ public class Weapon : ScriptableObject
     public float range = 100f;
     public GameObject graphics;
     public float fireRate = 0f;
+    public int ID = 0;
 	
 }
