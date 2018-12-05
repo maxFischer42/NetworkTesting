@@ -26,7 +26,7 @@ public class WeaponManager : NetworkBehaviour
 
     private void Start()
     {
-        EquipWeapon(primaryWeapon);
+    //    EquipWeapon(primaryWeapon);
 
     }
 
@@ -35,12 +35,19 @@ public class WeaponManager : NetworkBehaviour
         return currentWeapon;
     }
 
-    void EquipWeapon(Weapon _weapon)
+    public void EquipWeapon(Weapon _weapon)
     {
+        if(currentGraphics != null)
+        {
+            Destroy(currentGraphics.gameObject);
+        }
         currentWeapon = _weapon;
 
-        GameObject _weaponIns = (GameObject)Instantiate(_weapon.graphics, weaponHolder.position, _weapon.graphics.transform.rotation);
-        _weaponIns.transform.SetParent(weaponHolder);
+        GameObject _weaponIns = (GameObject)Instantiate(_weapon.graphics, weaponHolder);
+        // _weaponIns.transform.SetParent(weaponHolder);
+        _weaponIns.transform.localPosition = _weapon.Position;
+        _weaponIns.transform.localRotation = Quaternion.Euler(_weapon.Rotation);
+       // _weaponIns.transform.rotation = Quaternion.Euler(_weapon.Rotation);
 
         currentGraphics = _weaponIns.GetComponent<WeaponGraphics>();
         if(currentGraphics == null)
@@ -54,6 +61,7 @@ public class WeaponManager : NetworkBehaviour
 
         
     }
+
 
 
 }

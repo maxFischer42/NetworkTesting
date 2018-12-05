@@ -6,7 +6,8 @@ public class Weapon : ScriptableObject
 {
 
     public string name = "Glock";
-
+    public Vector3 Position;
+    public Vector3 Rotation;
     public int damage = 10;
     public float range = 100f;
     public GameObject graphics;

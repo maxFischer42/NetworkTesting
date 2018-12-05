@@ -48,6 +48,20 @@ public class Player : NetworkBehaviour {
        gameObject.SetActive(false);
     }
 
+    [Command]
+    public void CmdSwapWeapons(Weapon _weapon, GameObject destroyObj)
+    {
+        GetComponent<WeaponManager>().EquipWeapon(_weapon);
+        RpcEndDrop(destroyObj);
+        Destroy(destroyObj);
+    }
+
+    [ClientRpc]
+    void RpcEndDrop(GameObject _drop)
+    {
+        Destroy(_drop);
+    }
+
 
 
 
