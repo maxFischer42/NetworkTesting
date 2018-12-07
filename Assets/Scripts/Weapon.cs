@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
+//[System.Serializable]
 [CreateAssetMenu]
 public class Weapon : ScriptableObject
 {
 
-    public string name = "Glock";
+    public string Name = "Glock";
     public Vector3 Position;
     public Vector3 Rotation;
     public int damage = 10;

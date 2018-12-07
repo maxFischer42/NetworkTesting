@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6c1bbe7c4280f42ae8550990b90b65, type: 3}
   m_Name: MP5
   m_EditorClassIdentifier: 
-  name: MP5
+  Name: MP5
+  Position: {x: 0, y: 0, z: 0}
   Rotation: {x: -5.728, y: 90.261, z: -4.802}
   damage: 6
-  range: 46
+  range: 20
   graphics: {fileID: 1708181419982056, guid: 27932676f402a144cb9463577ef8811b, type: 2}
   fireRate: 6
   ID: 4

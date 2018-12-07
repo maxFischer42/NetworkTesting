@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6c1bbe7c4280f42ae8550990b90b65, type: 3}
   m_Name: P90
   m_EditorClassIdentifier: 
-  name: P90
+  Name: P90
+  Position: {x: 0, y: 0, z: 0}
   Rotation: {x: 4.3, y: 90, z: -0.89}
   damage: 15
   range: 15

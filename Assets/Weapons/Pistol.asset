@@ -11,9 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6c1bbe7c4280f42ae8550990b90b65, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  name: Pistol
-  damage: 10
-  range: 100
-  graphics: {fileID: 0}
+  Name: Glock
+  Position: {x: 0.52, y: -0.12, z: 0.38}
+  Rotation: {x: 1.21, y: 103.99, z: 3.01}
+  damage: 3
+  range: 25
+  graphics: {fileID: 1589958491178504, guid: 65ec23185122a054bb00154188574403, type: 2}
   fireRate: 0
-  ID: 0
+  ID: 2

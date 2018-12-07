@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-
+    public Weapon[] availableWeapons;
     private const string PLAYER_ID_PREFIX = "Player ";
 
     private static Dictionary<string, Player> players = new Dictionary<string, Player>();
@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     {
         players.Remove(_playerID);
     }
+
+    
 
 
     /*private void OnGUI()

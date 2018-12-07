@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 4735409957092926}
   - component: {fileID: 95322871018652612}
   - component: {fileID: 114455075197166894}
+  - component: {fileID: 114795592555456364}
   m_Layer: 12
   m_Name: SMG
   m_TagString: Untagged
@@ -1404,6 +1405,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 198233610986016836}
   hitEffectPrefab: {fileID: 0}
+--- !u!114 &114795592555456364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1708181419982056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 39
+    i1: 147
+    i2: 38
+    i3: 118
+    i4: 244
+    i5: 2
+    i6: 161
+    i7: 68
+    i8: 203
+    i9: 148
+    i10: 99
+    i11: 87
+    i12: 126
+    i13: 248
+    i14: 129
+    i15: 27
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!198 &198233610986016836
 ParticleSystem:
   m_ObjectHideFlags: 1

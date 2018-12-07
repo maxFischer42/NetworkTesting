@@ -35,6 +35,7 @@ public class Player : NetworkBehaviour {
             CmdKillPlayer(id, pid);
     }
 
+
     [Command]
     void CmdKillPlayer(int weaponID, string playerID)
     {
@@ -48,20 +49,28 @@ public class Player : NetworkBehaviour {
        gameObject.SetActive(false);
     }
 
-    [Command]
-    public void CmdSwapWeapons(Weapon _weapon, GameObject destroyObj)
+
+
+
+    public void CheckPickup(Weapon wep, GameObject obj)
     {
-        GetComponent<WeaponManager>().EquipWeapon(_weapon);
-        RpcEndDrop(destroyObj);
-        Destroy(destroyObj);
+        
+        Debug.Log("Weapon picked up");
+        CmdSwapWeapons(wep);
+    }
+
+    [Command]
+    public void CmdSwapWeapons(Weapon _weapon)
+    {
+        Debug.Log("Swap Weapons called");
+        RpcSwap(_weapon);
     }
 
     [ClientRpc]
-    void RpcEndDrop(GameObject _drop)
+    public void RpcSwap(Weapon _weapon)
     {
-        Destroy(_drop);
+        GetComponent<WeaponManager>().EquipWeapon(_weapon);
     }
-
 
 
 
