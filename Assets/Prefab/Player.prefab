@@ -3477,9 +3477,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cafa3a7e9f6c50e459e8dd4f2df530d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 15
   lookSensitivity: 3
-  isGrounded: 0
+  isGrounded: 1
   jumpAcceleration: 30000
   groundCheckDistance: 1
   animator: {fileID: 114107316869765034}
