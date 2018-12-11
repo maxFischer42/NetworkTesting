@@ -9,17 +9,24 @@ public class Drop : NetworkBehaviour {
     public enum ammoTypes { small, medium, large };
     public ammoTypes ammodrop;
     public int ammoAmount;
-    [SyncVar]
-    public bool Used;
 
-    private void Update()
+    
+    public void Use()
     {
-        if(Used)
-        {
-            gameObject.SetActive(false);
-        }        
+        CmdDestroy();
     }
 
+    [Command]
+    public void CmdDestroy()
+    {
+        RpcDes();
+    }
+
+    [ClientRpc]
+    public void RpcDes()
+    {
+        Destroy(gameObject);
+    }
 
 
 

@@ -28,18 +28,21 @@ public class WeaponPickup : NetworkBehaviour {
     {
         if (other.tag == "Detect" && Input.GetButtonDown("Equip"))
         {            
+            GetComponentInParent<WeaponManager>().CmdEquipWeapon(other.GetComponent<Drop>().myWeapon.ID);
             if(GetComponentInParent<NetworkIdentity>().isLocalPlayer)
             {
-                GetComponentInParent<WeaponManager>().EquipWeapon(other.GetComponent<Drop>().myWeapon);
                 displayBox.SetActive(false);                
-                other.GetComponent<Drop>().Used = true;
             }
-            else
-            {
-                GetComponentInParent<Player>().CheckPickup(other.GetComponent<Drop>().myWeapon, other.gameObject);
-            }            
+            other.GetComponent<Drop>().Use();
+
+            //other.GetComponent<Drop>().Used = true;
+            //else
+            //{
+            //   GetComponentInParent<Player>().CheckPickup(other.GetComponent<Drop>().myWeapon, other.gameObject);
+            //}            
         }
     }
+
 
     private void OnTriggerExit(Collider other)
     {

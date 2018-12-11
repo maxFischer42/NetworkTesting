@@ -155,7 +155,7 @@ public class PlayerShoot : NetworkBehaviour
         Debug.Log(_ID + " has been shot.");
 
         Player _player = GameManager.GetPlayer(_ID);
-        _player.TakeDamage(_damage, gameObject.name);
+        _player.TakeDamage(_damage, gameObject.name,currentWeapon.ID);
     }
 
 }

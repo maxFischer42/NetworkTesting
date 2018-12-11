@@ -26,13 +26,26 @@ public class WeaponIDS
 
     public static string[] GetWeaponNames()
     {
-        return new string[9] { "Nova", "Sniper", "Pistol", "M4", "MP5", "P90", "Revolver", "Knife", "RPG" };
+        return new string[9] { "Remington", "Sniper", "Pistol", "M4", "MP5", "P90", "Revolver", "Knife", "RPG" };
     }
 
     public static Weapon[] GetWeapons()
     {
         Weapon[] _weapons = GameObject.Find("GameManager").GetComponent<GameManager>().availableWeapons;
         return _weapons;
+    }
+
+    public static Weapon FindWeapon(int ID)
+    {
+        Weapon _weapon = new Weapon();
+        for(int i = 0; i < GetWeaponIds().Length; i++)
+        {
+            if(i == ID)
+            {
+                _weapon = GetWeapons()[i];
+            }
+        }
+        return _weapon;
     }
 
 }

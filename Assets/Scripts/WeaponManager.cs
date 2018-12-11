@@ -43,8 +43,17 @@ public class WeaponManager : NetworkBehaviour
         return currentWeapon;
     }
 
-    public void EquipWeapon(Weapon _weapon)
+    [Command]
+    public void CmdEquipWeapon(int ID)
     {
+        RpcEquipWeapon(ID);
+    }
+
+    [ClientRpc]
+    public void RpcEquipWeapon(int ID)
+    {
+        Weapon _weapon = FindWeapon(ID);
+
         primaryWeapon = _weapon;
         if(currentGraphics != null)
         {
@@ -79,5 +88,35 @@ public class WeaponManager : NetworkBehaviour
     }
 
 
+
+
+
+
+
+
+
+    public static Weapon FindWeapon(int ID)
+    {
+        Weapon _weapon = new Weapon();
+        for (int i = 0; i < GetWeaponIds().Length; i++)
+        {
+            if (i == ID)
+            {
+                _weapon = GetWeapons()[i];
+            }
+        }
+        return _weapon;
+    }
+
+    public static Weapon[] GetWeapons()
+    {
+        Weapon[] _weapons = GameObject.Find("_GameManager").GetComponent<GameManager>().availableWeapons;
+        return _weapons;
+    }
+
+    public static int[] GetWeaponIds()
+    {
+        return new int[9] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+    }
 
 }
