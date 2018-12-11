@@ -15,7 +15,10 @@ MonoBehaviour:
   Position: {x: 0, y: 0, z: 0}
   Rotation: {x: -5.728, y: 90.261, z: -4.802}
   damage: 6
-  range: 20
+  range: 250
   graphics: {fileID: 1708181419982056, guid: 27932676f402a144cb9463577ef8811b, type: 2}
   fireRate: 6
   ID: 4
+  ammoClip: 25
+  givenAmmo: 100
+  reloadTime: 1

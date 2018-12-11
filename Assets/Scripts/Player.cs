@@ -20,7 +20,7 @@ public class Player : NetworkBehaviour {
         SetDefaults();
     }
 
-    public void TakeDamage(int amount, int weaponID, string playerID)
+    public void TakeDamage(int amount, string playerID)
     {
         currentHealth -= amount;
 

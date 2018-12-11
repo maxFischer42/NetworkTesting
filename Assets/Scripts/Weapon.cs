@@ -13,5 +13,9 @@ public class Weapon : ScriptableObject
     public GameObject graphics;
     public float fireRate = 0f;
     public int ID = 0;
+    public int ammoClip = 25;
+    public int givenAmmo = 100;
+    public float reloadTime = 1f;
+
 	
 }

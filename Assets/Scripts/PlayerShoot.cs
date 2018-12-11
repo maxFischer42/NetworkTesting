@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(WeaponManager))]
 public class PlayerShoot : NetworkBehaviour
@@ -7,12 +9,19 @@ public class PlayerShoot : NetworkBehaviour
 
     private const string PLAYER_TAG = "Player";
 
+    public float ammo;
+    public float maxAmmo;
+    public float reloadTime;
 
+    public Text ammoTop;
+    public Text ammoBottom;
 
     private Weapon currentWeapon;
 
     [SerializeField]
     private Camera m_camera;
+
+    public GameObject[] particles;
 
     private WeaponManager weaponManager;
 
@@ -29,11 +38,23 @@ public class PlayerShoot : NetworkBehaviour
 
     private void Update()
     {
+        ammoTop.text = ammo.ToString();
+        ammoBottom.text = maxAmmo.ToString();
         currentWeapon = weaponManager.GetCurrentWeapon();
 
         if (currentWeapon == null)
             return;
-        if(currentWeapon.fireRate <= 0f)
+        if (ammo <= 0)
+        {
+            CancelInvoke("Shoot");
+            if (Input.GetButtonDown("Reload"))
+            {
+                IEnumerator reload = Reload();
+                StartCoroutine(reload);
+            }
+            return;
+        }
+        if (currentWeapon.fireRate <= 0f)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -51,8 +72,22 @@ public class PlayerShoot : NetworkBehaviour
                 CancelInvoke("Shoot");
             }
         }
+
         
     }
+
+
+    private IEnumerator Reload()
+    {        
+        weaponManager.GetCurrentGraphics().GetComponent<AudioSource>().PlayOneShot(weaponManager.GetCurrentGraphics().ReloadSound);
+        yield return new WaitForSeconds(reloadTime);
+        ammo = currentWeapon.ammoClip;
+        maxAmmo -= currentWeapon.ammoClip;
+        if (maxAmmo <= 0)
+            ammo += maxAmmo;
+    }
+
+
 
     //is called on the server when a player shoots
     [Command]
@@ -67,7 +102,9 @@ public class PlayerShoot : NetworkBehaviour
     void RpcDoShootEffect()
     {
         weaponManager.GetCurrentGraphics().muzzleFlash.Play();
+        weaponManager.GetCurrentGraphics().GetComponent<AudioSource>().PlayOneShot(weaponManager.GetCurrentGraphics().FireSound);
     }
+
 
 
 
@@ -78,18 +115,37 @@ public class PlayerShoot : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
+       
         CmdOnShoot();
         //Debug.Log("SHOOT");
-
-        RaycastHit _hit;
+        ammo--;
+       RaycastHit _hit;
+        GetComponent<LineRenderer>().SetPosition(0, transform.position);
         if(Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out _hit, currentWeapon.range, weaponManager.layerMask))
         {
+            int i = 0;
+            if (_hit.collider.tag == "Ground")
+            {
+                i = 1;
+            }
+            else if(_hit.collider.tag == "Road")
+            {
+                i = 2;
+            }
+            else if (_hit.collider.tag == "Building")
+            {
+                i = 3;
+            }
             //We hit something
-            //Debug.Log("We hit" + _hit.collider.name);
-            if(_hit.collider.tag == "Player")
+            Debug.Log("We hit" + _hit.collider.name);
+            GetComponent<LineRenderer>().SetPosition(1, _hit.point);
+            if (_hit.collider.tag == "Player")
             {
                 CmdPlayerShot(_hit.collider.name, currentWeapon.damage);
+                
             }
+            GameObject effect = (GameObject)Instantiate(particles[i], _hit.point, Quaternion.identity);
+            Destroy(effect, 5f);
         }
     }
 
@@ -99,7 +155,7 @@ public class PlayerShoot : NetworkBehaviour
         Debug.Log(_ID + " has been shot.");
 
         Player _player = GameManager.GetPlayer(_ID);
-        _player.TakeDamage(_damage, currentWeapon.ID, gameObject.name);
+        _player.TakeDamage(_damage, gameObject.name);
     }
 
 }
