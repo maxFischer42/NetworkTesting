@@ -118,12 +118,12 @@ public class PlayerShoot : NetworkBehaviour
        
         CmdOnShoot();
         //Debug.Log("SHOOT");
-        ammo--;
+        
        RaycastHit _hit;
-        GetComponent<LineRenderer>().SetPosition(0, transform.position);
+       // GetComponent<LineRenderer>().SetPosition(0, transform.position);
         if(Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out _hit, currentWeapon.range, weaponManager.layerMask))
         {
-            int i = 0;
+  /*          int i = 0;
             if (_hit.collider.tag == "Ground")
             {
                 i = 1;
@@ -135,27 +135,36 @@ public class PlayerShoot : NetworkBehaviour
             else if (_hit.collider.tag == "Building")
             {
                 i = 3;
-            }
+            }*/
             //We hit something
             Debug.Log("We hit" + _hit.collider.name);
-            GetComponent<LineRenderer>().SetPosition(1, _hit.point);
+           // GetComponent<LineRenderer>().SetPosition(1, _hit.point);
             if (_hit.collider.tag == "Player")
             {
-                CmdPlayerShot(_hit.collider.name, currentWeapon.damage);
+                //_hit.collider.GetComponent<Player>().CmdTakeDamage(currentWeapon.damage, gameObject.name, currentWeapon.ID);
+                //GameObject.Find("DamageManager").GetComponent<DamageManager>().CmdTakeDamage(currentWeapon.damage, gameObject.name, currentWeapon.ID);
+                Player hit = _hit.collider.GetComponent<Player>();
+                _hit.collider.GetComponent<Player>().currentHealth -= currentWeapon.damage;
+                _hit.collider.GetComponent<Player>().id = currentWeapon.ID;
+                hit.pid = gameObject.name;
                 
             }
-            GameObject effect = (GameObject)Instantiate(particles[i], _hit.point, Quaternion.identity);
+            GameObject effect = (GameObject)Instantiate(particles[0], _hit.point, Quaternion.identity);
             Destroy(effect, 5f);
         }
+            ammo--;
     }
 
-    [Command]
+                //CmdPlayerShot(_hit.collider.name, currentWeapon.damage);    
+   /* [Command]
     void CmdPlayerShot(string _ID, int _damage)
     {
         Debug.Log(_ID + " has been shot.");
 
-        Player _player = GameManager.GetPlayer(_ID);
-        _player.TakeDamage(_damage, gameObject.name,currentWeapon.ID);
-    }
+        //GameManager.GetPlayer(_ID);
+        GameObject.Find(_ID).GetComponent<Player>().TakeDamage(_damage, gameObject.name,currentWeapon.ID);
+    }*/
+
+    //[ClientRpc]
 
 }

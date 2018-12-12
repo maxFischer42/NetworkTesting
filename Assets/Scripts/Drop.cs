@@ -11,10 +11,6 @@ public class Drop : NetworkBehaviour {
     public int ammoAmount;
 
     
-    public void Use()
-    {
-        CmdDestroy();
-    }
 
     [Command]
     public void CmdDestroy()

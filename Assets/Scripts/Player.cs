@@ -6,36 +6,35 @@ using UnityEngine.UI;
 
 public class Player : NetworkBehaviour {
 
-    public Text healthbar;
+    public Text healthBar;
 
     [SerializeField]
     private int maxHealth = 10;
 
-    [SyncVar]
+    [SyncVar(hook = "OnChangeHealth")]
     public int currentHealth = 1;
 
-    private int id;
-    private string pid;
+    [SyncVar]
+    public int id;
+    [SyncVar]
+    public string pid;
 
 
     private void Awake()
     {
+        healthBar.text = currentHealth + " HP";
         SetDefaults();
     }
 
-    public void TakeDamage(int amount, string playerID, int weaponID)
-    {
-        currentHealth -= amount;
-
-        Debug.Log(transform.name + " now has " + currentHealth + " health.");
-        id = weaponID;
-        pid = playerID;
-
-    }
+    //public void Start()
+    //{
+    //    GameManager.registerPlayer(GetComponent<NetworkIdentity>().netId.ToString(), GetComponent<Player>());
+    //}
+  
 
     private void Update()
     {
-        healthbar.text =  currentHealth + "HP";
+        //healthbar.text =  currentHealth + "HP";
         if (currentHealth < 0)
             CmdKillPlayer(id, pid);
     }
@@ -87,5 +86,9 @@ public class Player : NetworkBehaviour {
         gameObject.name = GetComponent<NetworkIdentity>().netId.ToString();
    }
 
+    void OnChangeHealth(int health)
+    {
+        healthBar.text = currentHealth + " HP";
+    }
 
 }
