@@ -6,25 +6,21 @@ using UnityEngine.UI;
 
 public class Player : NetworkBehaviour {
 
-    public Text healthBar;
+  //  public Text healthBar;
 
-    [SerializeField]
-    private int maxHealth = 10;
+ //   [SerializeField]
+ //   private int maxHealth = 10;
 
-    [SyncVar(hook = "OnChangeHealth")]
-    public int currentHealth = 1;
+  //  [SyncVar(hook = "OnChangeHealth")]
+  //  public int currentHealth = 1;
 
-    [SyncVar]
-    public int id;
-    [SyncVar]
-    public string pid;
+ //   public Text Remote;
 
+ //   [SyncVar]
+  //  public int id;
+  //  [SyncVar]
+ //   public string pid;
 
-    private void Awake()
-    {
-        healthBar.text = currentHealth + " HP";
-        SetDefaults();
-    }
 
     //public void Start()
     //{
@@ -32,16 +28,17 @@ public class Player : NetworkBehaviour {
     //}
   
 
-    private void Update()
+  /*  private void Update()
     {
         //healthbar.text =  currentHealth + "HP";
-        if (currentHealth < 0)
+        if (currentHealth <= 0 && !isServer)
             CmdKillPlayer(id, pid);
+        Remote.text = currentHealth + "HP";
     }
 
 
     [Command]
-    void CmdKillPlayer(int weaponID, string playerID)
+    public void CmdKillPlayer(int weaponID, string playerID)
     {
         GameObject.Find("_GameManager").GetComponent<Killfeed>().RpcKillFeed(playerID, gameObject.name, weaponID);
         Debug.Log("Kill Player");
@@ -54,41 +51,74 @@ public class Player : NetworkBehaviour {
        gameObject.SetActive(false);
     }
 
-
-
-/*
-    public void CheckPickup(Weapon wep, GameObject obj)
+    [Command]
+    public void CmdChangeHealth(int newHP)
     {
-        
-        Debug.Log("Weapon picked up");
-        CmdSwapWeapons(wep);
+        ChangeHealth(newHP);
     }
+
+
+    [Server]
+    public void ChangeHealth(int newHP)
+    {
+        currentHealth -= newHP;
+    }
+
+
 
     [Command]
-    public void CmdSwapWeapons(Weapon _weapon)
+    public void CmdTakeDamage(int _amount)
     {
-        Debug.Log("Swap Weapons called");
-        RpcSwap(_weapon);
+        RpcTakeDamage(_amount);
     }
+
 
     [ClientRpc]
-    public void RpcSwap(Weapon _weapon)
+    public void RpcTakeDamage(int _amount)
     {
-        GetComponent<WeaponManager>().EquipWeapon(_weapon);
-    }
 
-*/
+        currentHealth -= _amount;
+
+        Debug.Log(transform.name + " now has " + currentHealth + " health.");
+
+        if (currentHealth <= 0)
+        {
+            CmdKillPlayer(id,pid);
+        }
+    }
+    /*
+        public void CheckPickup(Weapon wep, GameObject obj)
+        {
+
+            Debug.Log("Weapon picked up");
+            CmdSwapWeapons(wep);
+        }
+
+        [Command]
+        public void CmdSwapWeapons(Weapon _weapon)
+        {
+            Debug.Log("Swap Weapons called");
+            RpcSwap(_weapon);
+        }
+
+        [ClientRpc]
+        public void RpcSwap(Weapon _weapon)
+        {
+            GetComponent<WeaponManager>().EquipWeapon(_weapon);
+        }
+
+    */
 
 
     public void SetDefaults()
    {
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
         gameObject.name = GetComponent<NetworkIdentity>().netId.ToString();
    }
-
+   /*
     void OnChangeHealth(int health)
     {
         healthBar.text = currentHealth + " HP";
     }
-
+*/
 }

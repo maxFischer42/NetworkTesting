@@ -6,16 +6,16 @@ public class GameManager : MonoBehaviour
     public Weapon[] availableWeapons;
     private const string PLAYER_ID_PREFIX = "Player ";
 
-    private static Dictionary<string, Player> players = new Dictionary<string, Player>();
+    private static Dictionary<string, PlayerHealth> players = new Dictionary<string, PlayerHealth>();
 
-    public static void registerPlayer(string _netID, Player _player)
+    public static void registerPlayer(string _netID, PlayerHealth _player)
     {
         string _playerID = PLAYER_ID_PREFIX + _netID;
         players.Add(_playerID, _player);
         _player.transform.name = _playerID;
     }
 
-    public static Player GetPlayer(string _playerID)
+    public static PlayerHealth GetPlayer(string _playerID)
     {
         return players[_playerID];
     }

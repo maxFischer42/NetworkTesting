@@ -31,23 +31,23 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
-    public override void OnStartClient()
+  /*  public override void OnStartClient()
     {
         base.OnStartClient();
         string _ID = GetComponent<NetworkIdentity>().netId.ToString();
         Player _player = GetComponent<Player>();
         GameManager.registerPlayer(_ID, _player);
-    }
+    }*/
 
     void AssignRemoteLayer()
     {
         gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
     }
 
-    private void OnDisable()
+  /*  private void OnDisable()
     {
         GameManager.UnRegisterPlayer(transform.name);
         Destroy(playerUIInstance);
-    }
+    }*/
 
 }
