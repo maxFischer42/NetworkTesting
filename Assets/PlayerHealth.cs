@@ -8,6 +8,8 @@ public class PlayerHealth : NetworkBehaviour
 
     public GameObject Firework;
 
+    public Text endgame;
+
     [SerializeField]
     private int maxHealth = 100;
 
@@ -37,6 +39,7 @@ public class PlayerHealth : NetworkBehaviour
     private void Start()
     {        
         SetDefaults();
+        Cursor.visible = false;
     }
 
     private void Update()
