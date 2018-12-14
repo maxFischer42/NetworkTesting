@@ -18,11 +18,9 @@ public class MainMenuManager : MonoBehaviour {
 
     void Start()
     {
-        localXSens = PlayerPrefs.GetFloat("xSens");
-        localYSens = PlayerPrefs.GetFloat("ySens");
+        localXSens = PlayerPrefs.GetFloat("Sens");
 
         xSens.text = localXSens.ToString();
-        ySens.text = localYSens.ToString();
 
         volume = PlayerPrefs.GetFloat("Volume");
         volumeScroll.value = volume;
@@ -33,8 +31,7 @@ public class MainMenuManager : MonoBehaviour {
         PlayerPrefs.SetFloat("Volume", volumeScroll.value);
         volume = PlayerPrefs.GetFloat("Volume");
 
-        PlayerPrefs.SetFloat("xSens", float.Parse(xSens.text));
-        PlayerPrefs.SetFloat("ySens", float.Parse(ySens.text));
+        PlayerPrefs.SetFloat("Sens", float.Parse(xSens.text));
     }
 
     public void Skin(bool to)

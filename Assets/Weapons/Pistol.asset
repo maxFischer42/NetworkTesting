@@ -19,3 +19,6 @@ MonoBehaviour:
   graphics: {fileID: 1589958491178504, guid: 65ec23185122a054bb00154188574403, type: 2}
   fireRate: 0
   ID: 2
+  ammoClip: 50
+  givenAmmo: 25
+  reloadTime: 1

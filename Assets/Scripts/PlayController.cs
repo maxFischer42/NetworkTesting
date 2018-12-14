@@ -8,7 +8,7 @@ public class PlayController : MonoBehaviour
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
-    private float lookSensitivity = 3f;
+    public float lookSensitivity = 3f;
     public bool isGrounded = true;
     public float jumpAcceleration;
     public float groundCheckDistance = 0.01f;

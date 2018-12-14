@@ -17,7 +17,8 @@ MonoBehaviour:
   damage: 100
   range: 4
   graphics: {fileID: 1714265050791276, guid: 993fcfc0e676eb149a7ffb39f01aae5a, type: 2}
-  fireRate: 0.1
+  fireRate: 0
   ID: 0
-  ammoClip: 25
-  givenAmmo: 100
+  ammoClip: 1
+  givenAmmo: 25
+  reloadTime: 1

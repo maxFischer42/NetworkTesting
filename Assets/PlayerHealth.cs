@@ -20,6 +20,7 @@ public class PlayerHealth : NetworkBehaviour
     [SerializeField]
     private GameObject deathEffect;
 
+    public GameObject WeaponDrop;
 
 
 
@@ -40,7 +41,12 @@ public class PlayerHealth : NetworkBehaviour
 
     private void Update()
     {
-        healthBar.text = currentHealth + "HP"; 
+        healthBar.text = currentHealth + "HP";
+        AudioSource[] gameObjects = GameObject.FindObjectsOfType<AudioSource>();
+        for(int i = 0; i <= gameObjects.Length - 1; i++)
+        {
+            gameObjects[i].volume = PlayerPrefs.GetFloat("Volume");
+        }
     }
 
     [ClientRpc]
@@ -51,28 +57,16 @@ public class PlayerHealth : NetworkBehaviour
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
-        if (currentHealth <= 0 && isServer)
+        if (currentHealth <= 0)
         {
-            CmdKillPlayer();
-        }
-        else if (currentHealth <= 0)
-        {
-            gameObject.SetActive(false);
+            Win();
         }
     }
 
-    
 
-    [Command]
-    public void CmdKillPlayer()
-    {
-        //GameObject.Find("_GameManager").GetComponent<Killfeed>().RpcKillFeed(playerID, gameObject.name, weaponID);
-        Debug.Log("Kill Player");
-        gameObject.SetActive(false);
-    }
 
-    [ClientRpc]
-    public void RpcWin()
+
+    public void Win()
     {
         //GameObject.Find("_GameManager").GetComponent<Killfeed>().RpcKillFeed(playerID, gameObject.name, weaponID);
         Debug.Log("Kill Player");
@@ -80,6 +74,10 @@ public class PlayerHealth : NetworkBehaviour
         win.transform.parent = null;
         win.transform.SetPositionAndRotation(transform.position, Firework.transform.rotation);
         gameObject.SetActive(false);
+        GameObject itemDrop = (GameObject)Instantiate(WeaponDrop, transform);
+        itemDrop.transform.parent = null;
+        itemDrop.GetComponent<Drop>().myWeapon = GetComponent<WeaponManager>().GetCurrentWeapon();
+        Instantiate(itemDrop.GetComponent<Drop>().myWeapon.graphics, itemDrop.GetComponentInChildren<rotateDrop>().transform);
     }
 
 

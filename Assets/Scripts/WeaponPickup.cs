@@ -32,7 +32,7 @@ public class WeaponPickup : NetworkBehaviour {
             {
                 GetComponentInParent<WeaponManager>().CmdEquipWeapon(other.GetComponent<Drop>().myWeapon.ID);
                 displayBox.SetActive(false);
-                other.GetComponent<Drop>().CmdDestroy();
+                other.GetComponent<Drop>().dDestroy();
             }
             
 

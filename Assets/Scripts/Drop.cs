@@ -12,10 +12,9 @@ public class Drop : NetworkBehaviour {
 
     
 
-    [Command]
-    public void CmdDestroy()
+    public void dDestroy()
     {
-        RpcDes();
+        Destroy(gameObject);
     }
 
     [ClientRpc]
@@ -24,6 +23,11 @@ public class Drop : NetworkBehaviour {
         Destroy(gameObject);
     }
 
+    public void Start()
+    {
+        int i = Random.Range(0, GameObject.Find("_GameManager").GetComponent<GameManager>().availableWeapons.Length - 1);
+        myWeapon = GameObject.Find("_GameManager").GetComponent<GameManager>().availableWeapons[i];
+    }
 
 
 

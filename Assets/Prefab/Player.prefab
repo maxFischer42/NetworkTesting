@@ -4035,6 +4035,7 @@ MonoBehaviour:
   healthBar: {fileID: 114392336254900462}
   Remote: {fileID: 0}
   deathEffect: {fileID: 0}
+  WeaponDrop: {fileID: 1579278572970348, guid: 0e12599cdb139944992cc4370a581433, type: 2}
 --- !u!120 &120858264644090440
 LineRenderer:
   m_ObjectHideFlags: 1

@@ -28,6 +28,7 @@ public class PlayerSetup : NetworkBehaviour
         {
             playerUIInstance  = Instantiate(playerUIPrefab);
             playerUIInstance.name = playerUIPrefab.name;
+            GetComponent<PlayController>().lookSensitivity = PlayerPrefs.GetFloat("Sens");
         }
     }
 
